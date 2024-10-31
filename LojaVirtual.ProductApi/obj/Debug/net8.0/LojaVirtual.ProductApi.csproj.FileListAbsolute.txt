@@ -108,3 +108,5 @@ C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaV
 C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaVirtual.ProductApi\obj\Debug\net8.0\LojaVirtual.ProductApi.pdb
 C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaVirtual.ProductApi\obj\Debug\net8.0\LojaVirtual.ProductApi.genruntimeconfig.cache
 C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaVirtual.ProductApi\obj\Debug\net8.0\ref\LojaVirtual.ProductApi.dll
+C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaVirtual.ProductApi\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\gusta\OneDrive\Área de Trabalho\FastCash\LojaVirtual\LojaVirtual\LojaVirtual.ProductApi\obj\Debug\net8.0\LojaVirtual.ProductApi.sourcelink.json
