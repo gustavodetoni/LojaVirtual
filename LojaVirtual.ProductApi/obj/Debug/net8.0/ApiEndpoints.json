@@ -1,1 +1,81 @@
-[]
+[
+  {
+    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/Categories/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
+    "Method": "GetAllAsync",
+    "RelativePath": "api/Categories/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/Categories/deletar/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/Categories/editar/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "LojaVirtual.ProductApi.DTOs.CategoryDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
+    "Method": "CreateAsync",
+    "RelativePath": "criar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LojaVirtual.ProductApi.DTOs.CategoryDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
