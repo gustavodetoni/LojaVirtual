@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.ProductApi.Context;
+using LojaVirtual.ProductApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaVirtual.ProductApi.Repositories;
@@ -38,5 +39,10 @@ public class UnitOfWork : IUnitOfWork
     public void Dispose()
     {
         _context.Dispose();
+    }
+
+    public IRepository<T> GetRepository<T>() where T : class
+    {
+        return new Repository<T>(_context); 
     }
 }

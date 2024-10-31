@@ -1,5 +1,8 @@
 using LojaVirtual.ProductApi.Context;
+using LojaVirtual.ProductApi.DTOs.Mappings;
 using LojaVirtual.ProductApi.Repositories;
+using LojaVirtual.ProductApi.Repositories.Interfaces;
+using LojaVirtual.ProductApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ServerVersion.AutoDetect(mySqlConnection)));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

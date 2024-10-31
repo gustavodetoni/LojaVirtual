@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.ProductApi.Context;
 using LojaVirtual.ProductApi.Models; // Certifique-se de importar seus modelos
+using LojaVirtual.ProductApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -20,6 +21,12 @@ namespace LojaVirtual.ProductApi.Repositories
         {
             return await _context.Set<T>().FirstOrDefaultAsync(predicate);
         }
+
+        public async Task<T?> GetByIdAsync(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
         public T Create(T entity)
         {
             _context.Set<T>().Add(entity);
