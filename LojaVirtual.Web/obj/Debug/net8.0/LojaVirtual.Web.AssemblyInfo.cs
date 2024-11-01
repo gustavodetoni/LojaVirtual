@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("LojaVirtual.ProductApi")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("LojaVirtual.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e4e317854c073817d87b11ce69fd6ca6b37db1d")]
-[assembly: System.Reflection.AssemblyProductAttribute("LojaVirtual.ProductApi")]
-[assembly: System.Reflection.AssemblyTitleAttribute("LojaVirtual.ProductApi")]
+[assembly: System.Reflection.AssemblyProductAttribute("LojaVirtual.Web")]
+[assembly: System.Reflection.AssemblyTitleAttribute("LojaVirtual.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

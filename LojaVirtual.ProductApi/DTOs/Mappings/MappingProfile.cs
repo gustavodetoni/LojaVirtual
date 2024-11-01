@@ -11,6 +11,7 @@ public class MappingProfile : Profile
         CreateMap<Product, ProductRequestDTO>().ReverseMap();
         CreateMap<Product, ProductResponseDTO>().ReverseMap();
 
+
         // Mapeamento para Category (Response)
         CreateMap<Category, CategoryResponseDTO>()
             .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products))
@@ -18,5 +19,6 @@ public class MappingProfile : Profile
 
         // Mapeamento para CategoryRequestDTO (para criação de uma categoria)
         CreateMap<Category, CategoryRequestDTO>().ReverseMap();
+
     }
 }
