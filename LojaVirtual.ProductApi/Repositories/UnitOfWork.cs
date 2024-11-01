@@ -1,39 +1,32 @@
-﻿using LojaVirtual.ProductApi.Context;
-using LojaVirtual.ProductApi.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using MVPShop.ProductApi.DTOs;
+using MVPShop.ProductApi.Infrastructure;
+using MVPShop.ProductApi.Models;
+using MVPShop.ProductApi.Repositories;
+using MVPShop.ProductApi.Repositories.Interfaces;
+using MVPShop.ProductApi.Services;
 
-namespace LojaVirtual.ProductApi.Repositories;
+namespace ApiCatalogo.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-    public IProductRepository? _produtoRepo;
-    public ICategoryRepository? _categoriaRepo;
-    public AppDbContext _context;
+    private IProductRepository? _produtoRep;
+    private ICategoryRepository? _categoriaRep;
+    private readonly AppDbContext _context;
 
     public UnitOfWork(AppDbContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public IProductRepository ProductRepository
-    {
-        get
-        {
-            return _produtoRepo = _produtoRepo ?? new ProductRepository(_context);
-        }
-    }
+    public IProductRepository ProductRepository => _produtoRep ??= new ProductRepository(_context);
 
-    public ICategoryRepository CategoryRepository
-    {
-        get
-        {
-            return _categoriaRepo = _categoriaRepo ?? new CategoryRepository(_context);
-        }
-    }
+    public ICategoryRepository CategoryRepository => _categoriaRep ??= new CategoryRepository(_context);
 
-    public async Task CommitAsync()
+
+    public async Task<bool> Commit()
     {
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() >= 0;
     }
 
     public void Dispose()
@@ -43,6 +36,11 @@ public class UnitOfWork : IUnitOfWork
 
     public IRepository<T> GetRepository<T>() where T : class
     {
-        return new Repository<T>(_context); 
+        if (typeof(T) == typeof(Product))
+            return (IRepository<T>)ProductRepository;
+        if (typeof(T) == typeof(Category))
+            return (IRepository<T>)CategoryRepository;
+
+        throw new NotImplementedException("No repository found for this entity type.");
     }
 }

@@ -1,6 +1,8 @@
-﻿using LojaVirtual.ProductApi.Models;
+﻿using MVPShop.ProductApi.Models;
 
-namespace LojaVirtual.ProductApi.Repositories.Interfaces
+namespace MVPShop.ProductApi.Repositories;
+
+public interface IProductRepository : IRepository<Product>
 {
-    public interface IProductRepository : IRepository<Product> { }
+    
 }

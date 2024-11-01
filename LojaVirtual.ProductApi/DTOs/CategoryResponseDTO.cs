@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using MVPShop.ProductApi.Models;
 
-namespace MVPShop.ProductApi.Models;
+namespace MVPShop.ProductApi.DTOs;
 
-public class Category
+public class CategoryResponseDTO
 {
     public int Id { get; set; }
     public string? Name { get; set; }
-    [JsonIgnore]
     public ICollection<Product>? Products { get; set; }
 }

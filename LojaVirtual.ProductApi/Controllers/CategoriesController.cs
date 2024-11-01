@@ -1,63 +1,40 @@
-﻿using LojaVirtual.ProductApi.Services.Interfaces;
-using LojaVirtual.ProductApi.DTOs;
+﻿using ApiCatalogo.Repositories;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using LojaVirtual.ProductApi.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using MVPShop.ProductApi.DTOs;
+using MVPShop.ProductApi.Models;
+using MVPShop.ProductApi.Services;
 
-namespace LojaVirtual.ProductApi.Controllers
-{
-    [ApiController]
-    [Route("api/[controller]")]
-    public class CategoriesController : ControllerBase
+namespace MVPShop.ProductApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CategoriesController : GenericController<Category, CategoryRequestDTO, CategoryResponseDTO>
+{ 
+    private readonly  ICategoryService _categoryService;
+    public CategoriesController(ICategoryService categoryService, IService<Category, CategoryRequestDTO, CategoryResponseDTO> service, IMapper mapper) : base(service, mapper)
+        {
+            _categoryService = categoryService;
+        }
+   
+    
+    
+    
+    
+    [HttpGet("products/{id}")]
+    public async Task<ActionResult<CategoryResponseDTO>> GetCategoriesProducts(int id)
     {
-        private readonly IService<Category, CategoryDTO> _service;
-
-        public CategoriesController(IService<Category, CategoryDTO> service)
+        var category = await _categoryService.GetCategoryProducts(id);
+        if (category == null)
         {
-            _service = service;
+            return NotFound("No category with products found");
         }
-
-        [HttpPost("criar")]
-        public async Task<IActionResult> CreateAsync([FromBody] CategoryDTO dto)
-        {
-            if (dto == null)
-                return BadRequest("Invalid data.");
-
-            var createdCategory = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetByIdAsync), new { id = createdCategory.Id }, createdCategory);
-        }
-
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetByIdAsync(int id)
-        {
-            var category = await _service.GetAsync(c => c.Id == id);
-            if (category == null)
-                return NotFound();
-
-            return Ok(category);
-        }
-
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAllAsync()
-        {
-            var categories = await _service.GetAllAsync();
-            return Ok(categories);
-        }
-
-        [HttpPut("editar/{id:int}")]
-        public async Task<IActionResult> UpdateAsync(int id, [FromBody] CategoryDTO dto)
-        {
-            if (dto == null || dto.Id != id)
-                return BadRequest("Invalid data.");
-
-            var updatedCategory = await _service.UpdateAsync(dto);
-            return Ok(updatedCategory);
-        }
-
-        [HttpDelete("deletar/{id:int}")]
-        public async Task<IActionResult> DeleteAsync(int id)
-        {
-            await _service.DeleteAsync(id);
-            return NoContent();
-        }
+    
+        return Ok(category); 
     }
+
+
+    
 }
+

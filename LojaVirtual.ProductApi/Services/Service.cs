@@ -1,65 +1,76 @@
-﻿using LojaVirtual.ProductApi.Repositories.Interfaces;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using ApiCatalogo.Repositories;
 using AutoMapper;
-using LojaVirtual.ProductApi.Services.Interfaces;
-using LojaVirtual.ProductApi.DTOs;
 
-namespace LojaVirtual.ProductApi.Services
+public class Service<T, TRequestDto, TResponseDto> : IService<T, TRequestDto, TResponseDto> where T : class
 {
-    public class Service<T, TDto> : IService<T, TDto> where T : class where TDto : IEntityDto
+    protected readonly IUnitOfWork _unitOfWork;
+    protected readonly IMapper _mapper;
+    
+    public Service(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
+    
+    public async Task<IEnumerable<TResponseDto>> GetAllAsync()
+    {
+        var entities = await _unitOfWork.GetRepository<T>().GetAllAsync();
+        return _mapper.Map<IEnumerable<TResponseDto>>(entities);
+    }
 
-        public Service(IUnitOfWork unitOfWork, IMapper mapper)
+    public async Task<TResponseDto?> GetAsync(Expression<Func<T, bool>> predicate)
+    {
+        var entity = await _unitOfWork.GetRepository<T>().GetAsync(predicate);
+        return entity == null ? default : _mapper.Map<TResponseDto>(entity);
+    }
+
+    public async Task<TResponseDto?> GetByIdAsync(int id)
+    {
+        var entity = await _unitOfWork.GetRepository<T>().GetByIdAsync(id);
+        return entity == null ? default : _mapper.Map<TResponseDto>(entity);
+    }
+
+    public async Task<TResponseDto> PostAsync(TRequestDto dto)
+    {
+        var entity = _mapper.Map<T>(dto);
+        await _unitOfWork.GetRepository<T>().PostAsync(entity);
+        await _unitOfWork.Commit();
+        return _mapper.Map<TResponseDto>(entity);
+    }
+
+    public async Task<TResponseDto> PutAsync(TRequestDto dto)
+    {
+        // Obtém o ID a partir do DTO (assumindo que ele possui o campo 'Id')
+        var entityId = (int)typeof(TRequestDto).GetProperty("Id")?.GetValue(dto);
+
+        // Busca a entidade existente
+        var existingEntity = await _unitOfWork.GetRepository<T>().GetByIdAsync(entityId);
+        if (existingEntity == null)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            throw new ArgumentException("Entity not found");
         }
 
-        public async Task<IEnumerable<TDto>> GetAllAsync()
-        {
-            var entities = await _unitOfWork.GetRepository<T>().GetAllAsync();
-            return _mapper.Map<IEnumerable<TDto>>(entities);
-        }
+        // Atualiza as propriedades com o mapeamento
+        _mapper.Map(dto, existingEntity);
 
-        public async Task<TDto?> GetAsync(Expression<Func<T, bool>> predicate)
-        {
-            var entity = await _unitOfWork.GetRepository<T>().GetAsync(predicate);
-            return _mapper.Map<TDto>(entity);
-        }
+        // Chama o método de atualização no repositório
+        var updatedEntity = await _unitOfWork.GetRepository<T>().PutAsync(existingEntity);
+        await _unitOfWork.Commit();
 
-        public async Task<TDto> CreateAsync(TDto dto)
-        {
-            var entity = _mapper.Map<T>(dto);
-            _unitOfWork.GetRepository<T>().Create(entity);
-            await _unitOfWork.CommitAsync();
-            return _mapper.Map<TDto>(entity);
-        }
+        // Mapeia a entidade atualizada para o DTO de resposta
+        return _mapper.Map<TResponseDto>(updatedEntity);
+    }
 
-        public async Task<TDto> UpdateAsync(TDto dto)
-        {
-            var existingEntity = await _unitOfWork.GetRepository<T>().GetByIdAsync(dto.Id);
-            if (existingEntity == null)
-            {
-                throw new InvalidOperationException("Entity not found.");
-            }
 
-            var entity = _mapper.Map<T>(dto);
-            _unitOfWork.GetRepository<T>().Update(entity);
-            await _unitOfWork.CommitAsync();
+    public async Task<TResponseDto> DeleteAsync(int id)
+    {
+        var entity = await _unitOfWork.GetRepository<T>().GetByIdAsync(id);
+        if (entity == null)
+            throw new ArgumentNullException(nameof(entity));
 
-            return _mapper.Map<TDto>(entity);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            var entity = await _unitOfWork.GetRepository<T>().GetByIdAsync(id);
-            if (entity != null)
-            {
-                _unitOfWork.GetRepository<T>().Delete(entity);
-                await _unitOfWork.CommitAsync();
-            }
-        }
+        await _unitOfWork.GetRepository<T>().DeleteAsync(id);
+        await _unitOfWork.Commit();
+        return _mapper.Map<TResponseDto>(entity);
     }
 }

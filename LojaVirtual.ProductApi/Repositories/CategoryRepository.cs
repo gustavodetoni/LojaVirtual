@@ -1,12 +1,18 @@
-﻿using LojaVirtual.ProductApi.Context;
-using LojaVirtual.ProductApi.Models;
-using LojaVirtual.ProductApi.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MVPShop.ProductApi.Infrastructure;
+using MVPShop.ProductApi.Models;
 
-namespace LojaVirtual.ProductApi.Repositories
+namespace MVPShop.ProductApi.Repositories.Interfaces;
+
+public class CategoryRepository : Repository<Category>, ICategoryRepository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public CategoryRepository(AppDbContext context) : base(context)
     {
-        public CategoryRepository(AppDbContext context) : base(context) { }
+    }
+
+    public async Task<Category> GetCategoryProducts(int categoryId)
+    {
+        var categoryProducts = await _context.Categories.Include(x => x.Products).FirstOrDefaultAsync(x => x.Id == categoryId);
+        return categoryProducts;
     }
 }

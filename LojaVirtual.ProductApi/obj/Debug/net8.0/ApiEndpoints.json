@@ -1,7 +1,53 @@
 [
   {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
-    "Method": "GetByIdAsync",
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Category, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAll",
+    "RelativePath": "api/Categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Category, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Post",
+    "RelativePath": "api/Categories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "MVPShop.ProductApi.DTOs.CategoryRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.CategoryResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Category, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
     "RelativePath": "api/Categories/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -13,54 +59,22 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
-    "Method": "GetAllAsync",
-    "RelativePath": "api/Categories/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
-    "Method": "CreateAsync",
-    "RelativePath": "api/Categories/criar",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "dto",
-        "Type": "LojaVirtual.ProductApi.DTOs.CategoryDTO",
-        "IsRequired": true
+        "Type": "MVPShop.ProductApi.DTOs.CategoryResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
-    "Method": "DeleteAsync",
-    "RelativePath": "api/Categories/deletar/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.CategoriesController",
-    "Method": "UpdateAsync",
-    "RelativePath": "api/Categories/editar/{id}",
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Category, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Put",
+    "RelativePath": "api/Categories/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -72,15 +86,123 @@
       },
       {
         "Name": "dto",
-        "Type": "LojaVirtual.ProductApi.DTOs.CategoryDTO",
+        "Type": "MVPShop.ProductApi.DTOs.CategoryRequestDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.CategoryResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.ProductsController",
-    "Method": "GetByIdAsync",
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Category, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.CategoryResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Categories/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.CategoryResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.CategoriesController",
+    "Method": "GetCategoriesProducts",
+    "RelativePath": "api/Categories/products/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.CategoryResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Product, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAll",
+    "RelativePath": "api/Products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Product, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Post",
+    "RelativePath": "api/Products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "MVPShop.ProductApi.DTOs.ProductRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.ProductResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Product, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -92,54 +214,22 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.ProductsController",
-    "Method": "GetAllAsync",
-    "RelativePath": "api/Products/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.ProductsController",
-    "Method": "CreateAsync",
-    "RelativePath": "api/Products/criar",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "dto",
-        "Type": "LojaVirtual.ProductApi.DTOs.ProductDTO",
-        "IsRequired": true
+        "Type": "MVPShop.ProductApi.DTOs.ProductResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.ProductsController",
-    "Method": "DeleteAsync",
-    "RelativePath": "api/Products/deletar/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LojaVirtual.ProductApi.Controllers.ProductsController",
-    "Method": "UpdateAsync",
-    "RelativePath": "api/Products/editar/{id}",
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Product, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Put",
+    "RelativePath": "api/Products/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -151,10 +241,46 @@
       },
       {
         "Name": "dto",
-        "Type": "LojaVirtual.ProductApi.DTOs.ProductDTO",
+        "Type": "MVPShop.ProductApi.DTOs.ProductRequestDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.ProductResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MVPShop.ProductApi.Controllers.GenericController\u00603[[MVPShop.ProductApi.Models.Product, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductRequestDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MVPShop.ProductApi.DTOs.ProductResponseDTO, LojaVirtual.ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Products/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MVPShop.ProductApi.DTOs.ProductResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

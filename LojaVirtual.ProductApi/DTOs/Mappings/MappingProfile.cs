@@ -1,14 +1,22 @@
 ﻿using AutoMapper;
-using LojaVirtual.ProductApi.Models;
+using MVPShop.ProductApi.Models;
 
-namespace LojaVirtual.ProductApi.DTOs.Mappings
+namespace MVPShop.ProductApi.DTOs;
+
+public class MappingProfile : Profile
 {
-    public class MappingProfile : Profile
+    public MappingProfile()
     {
-        public MappingProfile() 
-        {
-            CreateMap<Category, CategoryDTO>().ReverseMap();
-            CreateMap<Product, ProductDTO>().ReverseMap();
-        }
+        // Mapeamento para Product (Request e Response)
+        CreateMap<Product, ProductRequestDTO>().ReverseMap();
+        CreateMap<Product, ProductResponseDTO>().ReverseMap();
+
+        // Mapeamento para Category (Response)
+        CreateMap<Category, CategoryResponseDTO>()
+            .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products))
+            .ReverseMap();
+
+        // Mapeamento para CategoryRequestDTO (para criação de uma categoria)
+        CreateMap<Category, CategoryRequestDTO>().ReverseMap();
     }
 }

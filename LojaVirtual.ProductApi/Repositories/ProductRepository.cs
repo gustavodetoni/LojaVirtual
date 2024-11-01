@@ -1,12 +1,11 @@
-﻿using LojaVirtual.ProductApi.Context;
-using LojaVirtual.ProductApi.Models;
-using LojaVirtual.ProductApi.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using MVPShop.ProductApi.Infrastructure;
+using MVPShop.ProductApi.Models;
 
-namespace LojaVirtual.ProductApi.Repositories
+namespace MVPShop.ProductApi.Repositories;
+
+public class ProductRepository : Repository<Product>, IProductRepository
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public ProductRepository(AppDbContext context) : base(context)
     {
-        public ProductRepository(AppDbContext context) : base(context) { }
     }
 }

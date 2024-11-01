@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using MVPShop.ProductApi.Models;
 
-namespace MVPShop.ProductApi.Models;
+namespace MVPShop.ProductApi.DTOs;
 
-public class Product
+public class ProductResponseDTO
 {
     public int Id { get; set; }
     public string? Name { get; set; }
@@ -12,8 +11,8 @@ public class Product
     public string? Description { get; set; }
     public long Stock { get; set; }
     public string? ImageUrl { get; set; }
-    
-    [JsonIgnore]
     public Category? Category { get; set; }
+
+    // CategoryId apenas para referência
     public int CategoryId { get; set; }
 }

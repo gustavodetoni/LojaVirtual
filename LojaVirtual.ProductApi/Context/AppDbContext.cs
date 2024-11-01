@@ -1,5 +1,5 @@
-﻿using LojaVirtual.ProductApi.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MVPShop.ProductApi.Models;
 
 namespace LojaVirtual.ProductApi.Context
 {
