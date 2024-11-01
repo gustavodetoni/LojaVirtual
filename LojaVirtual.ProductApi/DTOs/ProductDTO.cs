@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.ProductApi.DTOs
 {
-    public class ProductDTO
+    public class ProductDTO : IEntityDto
     {
         [Key]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "The name is Required")]
         [StringLength(100, MinimumLength = 3)]
         public string? Name { get; set; }
@@ -19,8 +19,6 @@ namespace LojaVirtual.ProductApi.DTOs
         [Range(1, 999)]
         public long Stock { get; set; }
         public string? ImageUrl { get; set; }
-
-        public Category? Category { get; set; }
         public int CategoryId { get; set; }
     }
 }

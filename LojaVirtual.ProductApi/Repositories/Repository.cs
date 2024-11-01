@@ -1,5 +1,5 @@
 ﻿using LojaVirtual.ProductApi.Context;
-using LojaVirtual.ProductApi.Models; // Certifique-se de importar seus modelos
+using LojaVirtual.ProductApi.Models; 
 using LojaVirtual.ProductApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -30,20 +30,20 @@ namespace LojaVirtual.ProductApi.Repositories
         public T Create(T entity)
         {
             _context.Set<T>().Add(entity);
-            //_context.SaveChanges();
+            _context.SaveChanges();
             return entity;
         }
         public T Update(T entity)
         {
             _context.Set<T>().Update(entity);
-            //_context.SaveChanges();
+            _context.SaveChanges();
             return entity;
         }
 
         public T Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            //_context.SaveChanges();
+            _context.SaveChanges();
             return entity;
         }
     }

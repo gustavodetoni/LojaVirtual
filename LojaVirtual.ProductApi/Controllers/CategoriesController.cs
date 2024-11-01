@@ -16,20 +16,20 @@ namespace LojaVirtual.ProductApi.Controllers
             _service = service;
         }
 
-        [HttpPost("/criar")]
+        [HttpPost("criar")]
         public async Task<IActionResult> CreateAsync([FromBody] CategoryDTO dto)
         {
             if (dto == null)
                 return BadRequest("Invalid data.");
 
             var createdCategory = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetByIdAsync), new { id = createdCategory.CategoryId }, createdCategory);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = createdCategory.Id }, createdCategory);
         }
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            var category = await _service.GetAsync(c => c.CategoryId == id);
+            var category = await _service.GetAsync(c => c.Id == id);
             if (category == null)
                 return NotFound();
 
@@ -46,7 +46,7 @@ namespace LojaVirtual.ProductApi.Controllers
         [HttpPut("editar/{id:int}")]
         public async Task<IActionResult> UpdateAsync(int id, [FromBody] CategoryDTO dto)
         {
-            if (dto == null || dto.CategoryId != id)
+            if (dto == null || dto.Id != id)
                 return BadRequest("Invalid data.");
 
             var updatedCategory = await _service.UpdateAsync(dto);

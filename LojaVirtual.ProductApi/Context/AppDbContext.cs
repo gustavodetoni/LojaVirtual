@@ -16,7 +16,7 @@ namespace LojaVirtual.ProductApi.Context
         //Fluent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasKey(c => c.CategoryId);
+            modelBuilder.Entity<Category>().HasKey(c => c.Id);
 
             modelBuilder.Entity<Category>().
                             Property(c=> c.Name).
@@ -51,12 +51,12 @@ namespace LojaVirtual.ProductApi.Context
             modelBuilder.Entity<Category>().HasData(
                 new Category
                 {
-                    CategoryId = 1,
+                    Id = 1,
                     Name = "Material Escolar",
                 },
                 new Category
                 {
-                    CategoryId = 2,
+                    Id = 2,
                     Name = "Acessorios",
                 });
         }

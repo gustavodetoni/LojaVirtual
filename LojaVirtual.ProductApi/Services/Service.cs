@@ -2,10 +2,11 @@
 using System.Linq.Expressions;
 using AutoMapper;
 using LojaVirtual.ProductApi.Services.Interfaces;
+using LojaVirtual.ProductApi.DTOs;
 
 namespace LojaVirtual.ProductApi.Services
 {
-    public class Service<T, TDto> : IService<T, TDto> where T : class
+    public class Service<T, TDto> : IService<T, TDto> where T : class where TDto : IEntityDto
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -38,9 +39,16 @@ namespace LojaVirtual.ProductApi.Services
 
         public async Task<TDto> UpdateAsync(TDto dto)
         {
+            var existingEntity = await _unitOfWork.GetRepository<T>().GetByIdAsync(dto.Id);
+            if (existingEntity == null)
+            {
+                throw new InvalidOperationException("Entity not found.");
+            }
+
             var entity = _mapper.Map<T>(dto);
             _unitOfWork.GetRepository<T>().Update(entity);
             await _unitOfWork.CommitAsync();
+
             return _mapper.Map<TDto>(entity);
         }
 
